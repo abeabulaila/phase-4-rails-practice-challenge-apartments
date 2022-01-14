@@ -17,9 +17,14 @@ class ApartmentsController < ApplicationController
     render json: apartment, status: :created
   end
 
-  def update #PATCH #########################################################
+  def update #PATCH
     apartment = find_apartment
-    apartment.update(params)
+    if apartment 
+    apartment.update(apartment_params)
+    render json: apartment, status: :ok
+    else
+        render_not_found 
+    end
   end
 
   def destroy #KILL

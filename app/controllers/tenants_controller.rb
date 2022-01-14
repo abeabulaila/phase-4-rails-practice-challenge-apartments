@@ -17,7 +17,13 @@ class TenantsController < ApplicationController
   end
 
   def update
-    ####################################################################
+    tenant = find_tenant
+    if tenant
+      tenant.update(tenant_params) 
+      render json: tenant, status: :ok
+    else
+        render_not_found
+    end
   end
 
   def destroy

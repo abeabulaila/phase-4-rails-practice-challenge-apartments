@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2022_01_14_151216) do
 
   create_table "leases", force: :cascade do |t|
     t.integer "rent"
+    t.integer "apartment_id"
+    t.integer "tenant_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
