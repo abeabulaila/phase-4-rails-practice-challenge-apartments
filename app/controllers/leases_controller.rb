@@ -2,7 +2,7 @@ class LeasesController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_response
 
   def create
-    lease = Lease.create(rent: params[:rent], apartment: params[:apartment], tenant: params[:tenant] )
+    lease = Lease.create(lease_params)
     render json: lease, status: :created
   end
 
@@ -15,7 +15,7 @@ class LeasesController < ApplicationController
   private
 
   def lease_params
-    params.permit(:rent)
+    params.permit(:rent, :apartment_id, :tenant_id)
   end
 
   def render_unprocessable_response(e)
